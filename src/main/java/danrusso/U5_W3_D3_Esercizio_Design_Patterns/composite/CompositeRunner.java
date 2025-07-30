@@ -10,13 +10,13 @@ public class CompositeRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Page page1 = new Page();
-        Page page2 = new Page();
-        Page page3 = new Page();
-        Page page4 = new Page();
-        Page page5 = new Page();
-        Page page6 = new Page();
-        Page page7 = new Page();
+        Page page1 = new Page("Lorem ipsum 1");
+        Page page2 = new Page("Lorem ipsum 2");
+        Page page3 = new Page("Lorem ipsum 3");
+        Page page4 = new Page("Lorem ipsum 4");
+        Page page5 = new Page("Lorem ipsum 5");
+        Page page6 = new Page("Lorem ipsum 6");
+        Page page7 = new Page("Lorem ipsum 7");
         Section chapter1 = new Section();
         Section chapter2 = new Section();
         Section chapter2_1 = new Section();
@@ -24,10 +24,10 @@ public class CompositeRunner implements CommandLineRunner {
         chapter2_1.addAll(page4);
         chapter2.addAll(chapter2_1, page5, page6, page7);
         Author author = new Author("Mario", "Rossi");
-        Book book = new Book(List.of(author), 20.99, List.of(chapter1, page2, chapter2, page6, page5));
+        Book book = new Book(List.of(author), 20.99, List.of(chapter1, chapter2));
 
         System.out.println("***********************");
-        System.out.println(book.getPagesNo());
+        System.out.println(book.getNumberPages());
         book.print();
         System.out.println("***********************");
     }

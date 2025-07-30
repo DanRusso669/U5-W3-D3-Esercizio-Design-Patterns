@@ -2,31 +2,28 @@ package danrusso.U5_W3_D3_Esercizio_Design_Patterns.composite;
 
 import java.util.List;
 
-public class Book implements Thing {
+public class Book {
     private List<Author> authors;
     private double price;
-    private List<Thing> pages;
+    private List<Section> children;
 
-    public Book(List<Author> authors, double price, List<Thing> pages) {
+    public Book(List<Author> authors, double price, List<Section> children) {
         this.authors = authors;
         this.price = price;
-        this.pages = pages;
+        this.children = children;
     }
 
-    @Override
-    public int getPagesNo() {
+    public int getNumberPages() {
         int sum = 0;
-        for (Thing page : pages) {
-            sum += page.getPagesNo();
+        for (Section chapter : children) {
+            sum += chapter.getNumberPages();
         }
         return sum;
     }
 
-    @Override
     public void print() {
-        System.out.println("Questo è un libro.");
-        for (Thing page : pages) {
-            page.print();
+        for (Section chapter : children) {
+            chapter.print();
         }
     }
 }

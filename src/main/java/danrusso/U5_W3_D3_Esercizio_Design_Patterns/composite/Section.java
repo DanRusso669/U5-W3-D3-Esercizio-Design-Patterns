@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Section extends Page {
+public class Section implements Thing {
     private List<Thing> children;
 
     public Section() {
@@ -12,17 +12,17 @@ public class Section extends Page {
     }
 
     @Override
-    public int getPagesNo() {
+    public int getNumberPages() {
         int sum = 0;
         for (Thing page : children) {
-            sum += page.getPagesNo();
+            sum += page.getNumberPages();
         }
         return sum;
     }
 
     @Override
     public void print() {
-        System.out.println("Sono una sezione.");
+        children.forEach(child -> child.print());
     }
 
     public void addAll(Thing... things) {
